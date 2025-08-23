@@ -13,7 +13,7 @@ const NavItems = () => {
         <nav>
           {sidebarItems.map(({ id, href, icon, label }) => (
             <NavLink to={href} key={id}>
-              {({ isActive }: { isActive: boolean }) => <div>{label}</div>}
+              {({ isActive }: { isActive: boolean }) => <div className={}>{label}</div>}
             </NavLink>
           ))}
         </nav>
