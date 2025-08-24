@@ -36,6 +36,12 @@ const NavItems = () => {
             </NavLink>
           ))}
         </nav>
+        <footer className="nav-footer">
+          <img src={user?.imageUrl || '/assets/images/david.webp'} alt={user?.name || 'David'} />
+
+        </footer>
+
+
       </div>
     </section>
   );
