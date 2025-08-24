@@ -3,6 +3,13 @@ import { sidebarItems } from "~/constants";
 import { cn } from "~/lib/utils";
 
 const NavItems = () => {
+    const user = {
+      name: 'James',
+      email: 'contact@jsmastery.pro',
+      imageUrl: '/assets/images/david.webp'
+    }
+
+
   return (
     <section className="nav-items">
       <Link to="/" className="link-logo">
