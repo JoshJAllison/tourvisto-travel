@@ -38,7 +38,10 @@ const NavItems = () => {
         </nav>
         <footer className="nav-footer">
           <img src={user?.imageUrl || '/assets/images/david.webp'} alt={user?.name || 'David'} />
-
+          <article>
+            <h2>{user?.name}</h2>
+            <p>{user?.email}</p>
+          </article>
         </footer>
 
 
