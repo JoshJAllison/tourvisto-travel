@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import type {SidebarComponent} from "@syncfusion/ej2-react-navigations"
+import {SidebarComponent} from "@syncfusion/ej2-react-navigations"
 
 const MobileSidebar = () => {
     let sidebar: SidebarComponent
@@ -22,6 +22,12 @@ const MobileSidebar = () => {
                 <img src="/assets/icons/menu.svg" alt="menu" className="size-7"/>
             </button>
         </header>
+
+        <SidebarComponent
+            width={270}
+        >
+
+        </SidebarComponent>
     </div>
   )
 }
