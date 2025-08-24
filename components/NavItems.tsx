@@ -5,7 +5,7 @@ import { cn } from "~/lib/utils";
 const NavItems = () => {
     const user = {
       name: 'James',
-      email: 'contact@jsmastery.pro',
+      email: 'support@tourvisto.pro',
       imageUrl: '/assets/images/david.webp'
     }
 
@@ -42,6 +42,19 @@ const NavItems = () => {
             <h2>{user?.name}</h2>
             <p>{user?.email}</p>
           </article>
+
+          <button 
+                onClick={() => {
+                  console.log('logout')
+                }}
+                className="cursor-pointer"          
+          >
+                <img
+                  src="/assets/icons/logout.svg"
+                  alt="logout"
+                  className="size-6"
+                />
+          </button>
         </footer>
 
 
