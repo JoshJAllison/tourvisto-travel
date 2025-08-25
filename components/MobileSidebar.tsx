@@ -7,6 +7,11 @@ import NavItems from "./NavItems";
 
 const MobileSidebar = () => {
     let sidebar: SidebarComponent
+    
+    const toggleSidebar = () => {
+        sidebar.toggle()
+    }
+
 
   return (
     <div className="mobile-sidebar wrapper">
@@ -22,7 +27,7 @@ const MobileSidebar = () => {
             </Link>
 
           
-            <button onClick={() => sidebar.toggle()}>
+            <button onClick={toggleSidebar}>
                 <img src="/assets/icons/menu.svg" alt="menu" className="size-7"/>
             </button>
         </header>
@@ -35,7 +40,7 @@ const MobileSidebar = () => {
             showBackdrop={true}
             type="over"
         >
-            <NavItems />
+            <NavItems handleClick={toggleSidebar} />
 
         </SidebarComponent>
     </div>
