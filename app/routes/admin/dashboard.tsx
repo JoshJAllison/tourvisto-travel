@@ -5,7 +5,10 @@ const Dashboard = () => {
 
   return (
     <main className="dashboard wrapper">
-      <Header />
+      <Header 
+        title={`Welcome ${user?.name ?? 'Guest'} 👋`}
+        description="Track activity, trends and popular destinations"
+      />
       Dashboard Page Contents
     </main>
   );
