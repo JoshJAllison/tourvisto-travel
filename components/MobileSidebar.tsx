@@ -2,6 +2,7 @@
 
 import { Link } from "react-router";
 import {SidebarComponent} from "@syncfusion/ej2-react-navigations"
+import NavItems from "./NavItems";
 
 
 const MobileSidebar = () => {
@@ -34,6 +35,7 @@ const MobileSidebar = () => {
             showBackdrop={true}
             type="over"
         >
+            <NavItems />
 
         </SidebarComponent>
     </div>
