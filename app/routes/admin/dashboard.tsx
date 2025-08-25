@@ -1,9 +1,14 @@
-import React from 'react'
+import { Header } from "../../../components";
 
-const dashboard = () => {
+const Dashboard = () => {
+  const user = { name: "James" };
+
   return (
-    <div>My Dashboard</div>
-  )
-}
+    <main className="dashboard wrapper">
+      <Header />
+      Dashboard Page Contents
+    </main>
+  );
+};
 
-export default dashboard
+export default Dashboard;
