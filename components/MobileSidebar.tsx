@@ -1,5 +1,8 @@
+// @ts-nocheck
+
 import { Link } from "react-router";
 import {SidebarComponent} from "@syncfusion/ej2-react-navigations"
+
 
 const MobileSidebar = () => {
     let sidebar: SidebarComponent
@@ -17,7 +20,7 @@ const MobileSidebar = () => {
                 <h1>Tourvisto</h1>
             </Link>
 
-            {/*// @ts-ignore*/}
+          
             <button onClick={() => sidebar.toggle()}>
                 <img src="/assets/icons/menu.svg" alt="menu" className="size-7"/>
             </button>
@@ -25,6 +28,8 @@ const MobileSidebar = () => {
 
         <SidebarComponent
             width={270}
+            ref={(Sidebar) => Sidebar = sidebar}
+            created={() => sidebar.hide()}
         >
 
         </SidebarComponent>
