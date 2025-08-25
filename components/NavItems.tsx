@@ -24,7 +24,7 @@ const NavItems = ({ handleClick }: { handleClick?: () => void }) => {
                 <div
                   className={cn("group nav-item", {
                     "bg-primary-100 !text-white": isActive,
-                  })}
+                  })} onClick={handleClick}
                 >
                   <img
                     src={icon}
