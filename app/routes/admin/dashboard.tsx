@@ -42,7 +42,6 @@ const Dashboard = () => {
           />
         </div>
       </section>
-      <StatsCard />
       <TripCard />
     </main>
   );

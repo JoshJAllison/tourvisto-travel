@@ -22,17 +22,28 @@ const StatsCard = ({
           <h2 className="text-4xl font-semibold">{total}</h2>
           <div className="flex items-center gap-2">
             <figure className="flex items-center gap-1">
-                <img
-                    src={`/assets.icons/${isDecrement ? 'arrow-down-red.svg' : 'arrow-up-green.svg'}`} className="size-5" alt="arrow"
-                />
-                <figcaption className={cn('text-sm font-medium', isDecrement ? 'text-red-500' : 'text-green-700')}>
-                    {Math.round(percentage)}%
-                </figcaption>
+              <img
+                src={`/assets/icons/${isDecrement ? "arrow-down-red.svg" : "arrow-up-green.svg"}`}
+                className="size-5"
+                alt="arrow"
+              />
+              <figcaption
+                className={cn(
+                  "text-sm font-medium",
+                  isDecrement ? "text-red-500" : "text-green-700"
+                )}
+              >
+                {Math.round(percentage)}%
+              </figcaption>
             </figure>
-            <p className="text-sm font-medium text-grey-100 truncate">vs last month</p>
+            <p className="text-sm font-medium text-grey-100 truncate">
+              vs last month
+            </p>
           </div>
         </div>
-        <img src={`/assets/icons/${isDecrement ? 'decrement.svg' : 'increment.svg'}`} />
+        <img
+          src={`/assets/icons/${isDecrement ? "decrement.svg" : "increment.svg"}`}
+        />
       </div>
     </article>
   );
