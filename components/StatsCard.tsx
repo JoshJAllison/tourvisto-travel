@@ -1,3 +1,4 @@
+import { calculateTrendPercentage } from "~/lib/utils"
 
 
 const StatsCard = ({
@@ -6,6 +7,7 @@ const StatsCard = ({
     lastMonthCount,
     currentMonthCount
 }: StatsCard) => {
+    const {trend, percentage} = calculateTrendPercentage(currentMonthCount, lastMonthCount);
   return (
     <div>StatsCard</div>
   )
