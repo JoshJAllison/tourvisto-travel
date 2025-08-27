@@ -8,8 +8,14 @@ const StatsCard = ({
     currentMonthCount
 }: StatsCard) => {
     const {trend, percentage} = calculateTrendPercentage(currentMonthCount, lastMonthCount);
+
+    const isDecrement = trend === 'decrement';
   return (
-    <div>StatsCard</div>
+    <article className="stats-card">
+        <h3 className="text-base font-medium">
+            {headerTitle}
+        </h3>
+    </article>
   )
 }
 

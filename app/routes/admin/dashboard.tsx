@@ -35,7 +35,7 @@ const Dashboard = () => {
             lastMonthCount={tripsCreated.lastMonth}
           />
           <StatsCard
-            headerTitle="Total Users"
+            headerTitle="Active Users"
             total={userRole.total}
             currentMonthCount={userRole.currentMonth}
             lastMonthCount={userRole.lastMonth}
