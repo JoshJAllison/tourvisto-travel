@@ -10,6 +10,8 @@ const Dashboard = () => {
     userRole: { total: 62, currentMonth: 25, lastMonth: 15}
   }
 
+  const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole} = dashboardStats;
+
   return (
     <main className="dashboard wrapper">
       <Header 
@@ -17,6 +19,18 @@ const Dashboard = () => {
         description="Track activity, trends and popular destinations in real time"
       />
 
+
+      <section className="flex flex-col gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+          <StatsCard
+            headerTitle="Total Users"
+            total={totalUsers}
+            currentMonthCount={usersJoined.currentMonth}
+            lastMonthCount={usersJoined.lastMonth}
+          />
+        </div>
+
+      </section>
       <StatsCard />
       <TripCard />
     </main>
