@@ -1,6 +1,11 @@
 
 
-const StatsCard = () => {
+const StatsCard = ({
+    headerTitle,
+    total,
+    lastMonthCount,
+    currentMonthCount
+}: StatsCard) => {
   return (
     <div>StatsCard</div>
   )
