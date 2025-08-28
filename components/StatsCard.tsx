@@ -43,6 +43,8 @@ const StatsCard = ({
         </div>
         <img
           src={`/assets/icons/${isDecrement ? "decrement.svg" : "increment.svg"}`}
+          className="xl:w-32 w-full h-full md:h-32 xl:h-full"
+          alt="trend graph"
         />
       </div>
     </article>
