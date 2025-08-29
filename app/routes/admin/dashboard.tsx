@@ -49,6 +49,8 @@ import { Header, StatsCard, TripCard } from "../../../components";
   },
   ];
 
+const Dashboard = () => {
+
   const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } =
     dashboardStats;
 
