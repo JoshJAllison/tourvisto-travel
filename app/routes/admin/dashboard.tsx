@@ -2,8 +2,8 @@ import { Header, StatsCard, TripCard } from "../../../components";
 import { dashboardStats, user, allTrips } from "~/constants";
 
 const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } =
-    dashboardStats;
-  
+  dashboardStats;
+
 const Dashboard = () => {
   return (
     <main className="dashboard wrapper">
@@ -32,6 +32,14 @@ const Dashboard = () => {
             currentMonthCount={userRole.currentMonth}
             lastMonthCount={userRole.lastMonth}
           />
+        </div>
+      </section>
+      <section className="container">
+        <h1 className="text-xl font-semibold text-dark-100">Created Trips</h1>
+        <div className="trip-grid">
+          {allTrips.slice(0, 4).map((trip) => (
+            <TripCard />
+          ))}
         </div>
       </section>
       <TripCard />
