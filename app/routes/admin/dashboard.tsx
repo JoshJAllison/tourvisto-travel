@@ -42,7 +42,6 @@ const Dashboard = () => {
           ))}
         </div>
       </section>
-      <TripCard />
     </main>
   );
 };
