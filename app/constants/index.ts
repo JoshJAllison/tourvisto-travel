@@ -143,8 +143,8 @@ export const RIGHT_CONFETTI = {
 };
 
 // Dummy static data (dynamic in live version)
-const user = { name: "James" };
-const dashboardStats = {
+export const user = { name: "James" };
+export const dashboardStats = {
   totalUsers: 12450,
   usersJoined: { currentMonth: 218, lastMonth: 176 },
   totalTrips: 3210,
@@ -152,7 +152,7 @@ const dashboardStats = {
   userRole: { total: 62, currentMonth: 25, lastMonth: 15 },
 }
 
-const allTrips = [{
+export const allTrips = [{
   id: 1,
   name: "Tropical Rewind",
   imageUrls: ["/assets/images/sample1.jpg"],
@@ -190,7 +190,7 @@ const allTrips = [{
 },
 ];
 
-const users = [
+export const users = [
   {
     id: 1,
     name: "John Doe",
