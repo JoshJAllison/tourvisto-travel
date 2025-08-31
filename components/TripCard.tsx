@@ -1,4 +1,6 @@
 import {Link, useLocation} from "react-router";
+import { cn } from "~/lib/utils";
+
 
 const TripCard = ({id, name, location, imageUrl, tags, price}: TripCardProps) => {
   const path = useLocation();
@@ -17,6 +19,22 @@ const TripCard = ({id, name, location, imageUrl, tags, price}: TripCardProps) =>
           <figcaption>{location}</figcaption>
         </figure>
       </article>
+
+      <div className="mt-5 pl-[18px] pr-3.5 pb-5">
+        <ChipListComponent id="travel">
+          <ChipsDirective>
+            {tags.map((tag, index) => (
+              <ChipDirective
+                key={index}
+                text={getFirstWord{tag}}
+                cssClass={cn(index === 1 ? '!bg-pink-50 !text-pink-500' : '!bg-success-50 !text-success-700')}
+              />
+            ))}
+          </CHipsDirective>
+        </ChipListComponent>   
+      </div>
+
+      <article>{price}</article>
     </Link>
   )
 }
