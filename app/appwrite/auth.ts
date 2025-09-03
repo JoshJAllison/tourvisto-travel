@@ -1,6 +1,9 @@
+import { account } from "~/appwrite/client";
+import { OAuthProvider } from "appwrite";
+
 export const loginWithGoogle = () => {
     try{
-
+        account.createOAuth2Session(OAuthProvider.Google)
     } catch (e) {
         console.log(e);
     }
