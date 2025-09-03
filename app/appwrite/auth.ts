@@ -10,14 +10,6 @@ export const loginWithGoogle = async () => {
     }
 }
 
-export const logoutUser = async () => {
-    try{
-
-    } catch (e) {
-        console.log(e);
-    }
-}
-
 export const getUser = async () => {
     try{
         const user = await account.get();
@@ -36,9 +28,17 @@ export const getUser = async () => {
     }
 }
 
-export const getGooglePicture = async () => {
+export const logoutUser = async () => {
     try{
 
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+export const getGooglePicture = async () => {
+    try{
+        
     } catch (e) {
         console.log(e);
     }
