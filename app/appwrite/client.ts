@@ -17,4 +17,4 @@ const account = new Account(client);
 const database = new Databases(client);
 const storage = new Storage(client);
 
-export { account, database, storage };
+export { client, account, database, storage };
