@@ -1,15 +1,16 @@
-import { account } from "~/appwrite/client";
-import { OAuthProvider } from "appwrite";
+import { account, appwriteConfig, database } from "~/appwrite/client";
+import { OAuthProvider, Query } from "appwrite";
+import { redirect } from "react-router";
 
-export const loginWithGoogle = () => {
+export const loginWithGoogle = async () => {
     try{
         account.createOAuth2Session(OAuthProvider.Google)
     } catch (e) {
-        console.log(e);
+        console.log('loginWithGoogle', e);
     }
 }
 
-export const logoutUser = () => {
+export const logoutUser = async () => {
     try{
 
     } catch (e) {
@@ -17,7 +18,25 @@ export const logoutUser = () => {
     }
 }
 
-export const getUser = () => {
+export const getUser = async () => {
+    try{
+        const user = await account.get();
+        if(!user) return redirect('/sign-in');
+
+        const { documents } = await database.listDocuments(
+            appwriteConfig.databaseId,
+            appwriteConfig.userCollectionId,
+            [
+                Query.equal('accountId', user.$id),
+                Query.select(['name','email','imageUrl','joinedAt', 'accountId'])
+            ]
+        )
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+export const getGooglePicture = async () => {
     try{
 
     } catch (e) {
@@ -25,7 +44,7 @@ export const getUser = () => {
     }
 }
 
-export const getGooglePicture = () => {
+export const storeUserData = async () => {
     try{
 
     } catch (e) {
@@ -33,15 +52,7 @@ export const getGooglePicture = () => {
     }
 }
 
-export const storeUserData = () => {
-    try{
-
-    } catch (e) {
-        console.log(e);
-    }
-}
-
-export const getExistingUser = () => {
+export const getExistingUser = async () => {
     try{
 
     } catch (e) {
