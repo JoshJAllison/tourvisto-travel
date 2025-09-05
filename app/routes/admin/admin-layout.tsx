@@ -4,7 +4,7 @@ import { MobileSidebar, NavItems } from "../../../components";
 import { account } from "~/appwrite/client";
 import { getExistingUser, storeUserData } from "~/appwrite/auth";
 
-export async function ClientLoader() {
+export async function clientLoader() {
   try {
     const user = await account.get();
     if (!user.$id) return redirect('/sign-in');
