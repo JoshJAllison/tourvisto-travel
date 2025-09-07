@@ -1,12 +1,16 @@
 import { PassThrough } from "node:stream";
 
-import * as Sentry from '@sentry/react-router';
+import * as Sentry from "@sentry/react-router";
 import type { AppLoadContext, EntryContext } from "react-router";
 import { createReadableStreamFromReadable } from "@react-router/node";
 import { ServerRouter } from "react-router";
 import { isbot } from "isbot";
 import type { RenderToPipeableStreamOptions } from "react-dom/server";
 import { renderToPipeableStream } from "react-dom/server";
+import {
+  getMetaTagTransformer,
+  wrapSentryHandleRequest,
+} from "@sentry/react-router";
 
 export const streamTimeout = 5_000;
 
@@ -15,7 +19,7 @@ function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   routerContext: EntryContext,
-  loadContext: AppLoadContext,
+  loadContext: AppLoadContext
   // If you have middleware enabled:
   // loadContext: unstable_RouterContextProvider
 ) {
@@ -44,10 +48,10 @@ function handleRequest(
             new Response(stream, {
               headers: responseHeaders,
               status: responseStatusCode,
-            }),
+            })
           );
 
-          pipe(body);
+          pipe(getMetaTagTransformer(body));
         },
         onShellError(error: unknown) {
           reject(error);
@@ -61,7 +65,7 @@ function handleRequest(
             console.error(error);
           }
         },
-      },
+      }
     );
 
     // Abort the rendering stream after the `streamTimeout` so it has time to
@@ -70,4 +74,8 @@ function handleRequest(
   });
 }
 
-export default Sentry.sentryHandleRequest((handleRequest));
+export const handleError = Sentry.createSentryHandleError({
+  logErrors: false,
+});
+
+export default Sentry.wrapSentryHandleRequest(handleRequest);
