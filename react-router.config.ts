@@ -8,6 +8,6 @@ export default {
   buildEnd: async ({ viteConfig, reactRouterConfig, buildManifest }) => {
     // ...
     // Call this at the end of the hook
-    +(await sentryOnBuildEnd({ viteConfig, reactRouterConfig, buildManifest }));
+    await sentryOnBuildEnd({ viteConfig, reactRouterConfig, buildManifest });
   },
 } satisfies Config;

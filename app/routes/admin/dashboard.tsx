@@ -8,6 +8,10 @@ const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } =
 
 export const clientLoader = async () => await getUser();
 
+export async function loader() {
+  throw new Error("some error thrown in a loader");
+}
+
 const Dashboard = ({ loaderData }: Route.ComponentProps ) => {
   const user = loaderData as User | null;
 

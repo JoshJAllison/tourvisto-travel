@@ -4,16 +4,16 @@ import {ButtonComponent} from "@syncfusion/ej2-react-buttons";
 import { loginWithGoogle } from '~/appwrite/auth';
 import {account} from "~/appwrite/client";
 
-export async function ClientLoader(){
+export async function clientLoader(){
     try {
         const user = await account.get();
-        if(user.$id) return redirect('/');
+        if(!user.$id) return redirect('/');
     } catch (e){
         console.log('Error fetching user', e)
     }
 }
 
-export const SignIn = () => {
+const SignIn = () => {
   return (
     <main className="auth">
         <section className="size-full glassmorphism flex-center px-6">
