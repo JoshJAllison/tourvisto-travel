@@ -1,5 +1,5 @@
 import { Header } from "../../../components";
-import { cn } from "~/lib/utils";
+import { cn, formatDate } from "~/lib/utils";
 import {
   ColumnsDirective,
   ColumnDirective,
@@ -16,7 +16,7 @@ export const loader = async () => {
 
 const AllUsers = ({ loaderData }: Route.ComponentProps) => {
   const { users } = loaderData;
-  
+
   return (
     <main className="all-users wrapper">
       <Header
@@ -46,15 +46,16 @@ const AllUsers = ({ loaderData }: Route.ComponentProps) => {
           <ColumnDirective
             field="email"
             headerText="Email Address"
-            width="150"
+            width="200"
             textAlign="Left"
           />
 
           <ColumnDirective
-            field="dateJoined"
+            field="joinedAt"
             headerText="Date Joined"
-            width="120"
+            width="140"
             textAlign="Left"
+            template={({joinedAt}: { joinedAt: string}) => formatDate(joinedAt)}
           />
 
           <ColumnDirective
