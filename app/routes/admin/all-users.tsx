@@ -7,8 +7,15 @@ import {
   GridComponent,
   Column,
 } from "@syncfusion/ej2-react-grids";
+import { getAllUsers } from "~/appwrite/auth";
+import type { Route } from "./+types/all-users";
 
-const AllUsers = () => {
+export const loader = async () => {
+  const { users, total} = await getAllUsers(10, 0);
+  return { users, total };
+}
+
+const AllUsers = ({ loaderData }: Route.ComponentProps) => {
   return (
     <main className="all-users wrapper">
       <Header
