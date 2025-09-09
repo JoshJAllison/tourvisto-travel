@@ -1,4 +1,3 @@
-import { users } from "~/constants";
 import { Header } from "../../../components";
 import { cn } from "~/lib/utils";
 import {
@@ -16,6 +15,8 @@ export const loader = async () => {
 }
 
 const AllUsers = ({ loaderData }: Route.ComponentProps) => {
+  const { users } = loaderData;
+  
   return (
     <main className="all-users wrapper">
       <Header
