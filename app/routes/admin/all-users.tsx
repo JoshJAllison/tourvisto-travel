@@ -1,6 +1,6 @@
 import { users } from "~/constants";
 import { Header } from "../../../components";
-import { GridComponent } from "@syncfusion/ej2-react-grids";
+import { ColumnsDirective, ColumnDirective, GridComponent } from "@syncfusion/ej2-react-grids";
 
 const AllUsers = () => {
   return (
@@ -11,8 +11,21 @@ const AllUsers = () => {
       />
 
 
-      <GridComponent dataSource={users}>
-
+      <GridComponent dataSource={users} gridLines="None">
+        <ColumnsDirective>
+          <ColumnDirective
+            field="name"
+            headerText="Name"
+            width="200"
+            textAlign="Left"
+            template={(props: UserData) => (
+              <div className="flex items-center gap-1.5 px-4">
+                <img src={props.imageUrl} alt="user" className="rounded-full size-8 aspect-square" />
+                  <span>{props.name}</span>
+              </div>
+            )}
+          />
+        </ColumnsDirective>
       </GridComponent>
     </main>
   );
