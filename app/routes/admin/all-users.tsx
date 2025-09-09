@@ -68,7 +68,7 @@ const AllUsers = () => {
                   status === "user" ? "bg-success-50" : "bg-light-300"
                 )}
               >
-                <div>
+                <div className={cn('size-1.5 rounded-full', status === 'user' ? 'bg-success-500': 'bg-gray-500')}>
                   <h3>{status}</h3>
                 </div>
               </article>
