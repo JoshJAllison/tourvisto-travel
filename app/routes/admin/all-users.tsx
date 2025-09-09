@@ -1,5 +1,6 @@
 import { users } from "~/constants";
 import { Header } from "../../../components";
+import { cn } from "~/lib/utils";
 import {
   ColumnsDirective,
   ColumnDirective,
@@ -60,10 +61,15 @@ const AllUsers = () => {
             headerText="Type"
             width="100"
             textAlign="Left"
-            template={(props: UserData) => (
-              <article>
+            template={({ status }: UserData) => (
+              <article
+                className={cn(
+                  "status-column",
+                  status === "user" ? "bg-success-50" : "bg-light-300"
+                )}
+              >
                 <div>
-                  <h3>{props.status}</h3>
+                  <h3>{status}</h3>
                 </div>
               </article>
             )}
