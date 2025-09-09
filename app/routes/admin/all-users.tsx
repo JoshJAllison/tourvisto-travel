@@ -68,9 +68,20 @@ const AllUsers = () => {
                   status === "user" ? "bg-success-50" : "bg-light-300"
                 )}
               >
-                <div className={cn('size-1.5 rounded-full', status === 'user' ? 'bg-success-500': 'bg-gray-500')}>
-                  <h3>{status}</h3>
-                </div>
+                <div
+                  className={cn(
+                    "size-1.5 rounded-full",
+                    status === "user" ? "bg-success-500" : "bg-gray-500"
+                  )}
+                />
+                <h3
+                  className={cn(
+                    "font-inter text-xs font-medium",
+                    status === "user" ? "text-success-700" : "text-gray-500"
+                  )}
+                >
+                  {status}
+                </h3>
               </article>
             )}
           />
