@@ -4,8 +4,10 @@ export const Trips = () => {
   return (
     <main className="all-users wrapper">
       <Header
-        title="Manage Users"
-        description="Filter, sort and access detailed user profiles"
+        title="Trips"
+        description="View and edit AI generates travel plans"
+        ctaText="Create a trip"
+        ctaUrl="/trips/create"
       />
     </main>
   )
