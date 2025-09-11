@@ -3,7 +3,7 @@ import { Header } from "../../../components";
 import type { Route } from "./+types/create-trip";
 
 export const loader = async () => {
-  const response = await fetch("https://restcountries.com/v3.1/all");
+  const response = await fetch('https://restcountries.com/v3.1/all');
   const data = await response.json();
   return data.map((country: any) => ({
     name: country.flag + country.name.common,
@@ -16,7 +16,7 @@ export const loader = async () => {
 const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
   const handleSubmit = async () => {};
   const handleChange = (key: keyof TripFormData, value: string | number) => {
-    
+
   }
   const countries = loaderData as Country[];
 
