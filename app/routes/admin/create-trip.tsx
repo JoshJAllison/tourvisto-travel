@@ -15,6 +15,9 @@ export const loader = async () => {
 
 const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
   const handleSubmit = async () => {};
+  const handleChange = (key: keyof TripFormData, value: string | number) => {
+    
+  }
   const countries = loaderData as Country[];
 
   const countryData = countries.map((country) => ({
@@ -40,6 +43,11 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
             fields={{ text: 'text', value: 'value' }}
             placeholder="Select a Country"
             className="combo-box"
+            change={(e: { value: string | undefined }) => {
+              if(e.value){
+                handleChange('country', e.value)
+              }
+            }}
             />
           </div>
         </form>
