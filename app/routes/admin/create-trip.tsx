@@ -3,28 +3,35 @@ import { Header } from "../../../components";
 import type { Route } from "./+types/create-trip";
 
 export const loader = async () => {
-  const response = await fetch('https://restcountries.com/v3.1/all');
-  const data = await response.json();
-  return data.map((country: any) => ({
-    name: country.flag + country.name.common,
-    coordinates: country.latlng,
-    value: country.name.common,
-    openStreetMap: country.maps?.openStreetMap,
-  }))
-}
+  const res = await fetch(
+    "https://restcountries.com/v3.1/all?fields=name,latlng,flag,maps"
+  );
+  if (!res.ok)
+    throw new Response("Failed to load countries", { status: res.status });
+
+  const data = await res.json();
+  if (!Array.isArray(data))
+    throw new Response("Unexpected countries payload", { status: 502 });
+
+  return data.map((c: any) => ({
+    name: c.flag + (c.name?.common ?? ""),
+    value: c.name?.common ?? "",
+    coordinates: c.latlng ?? [],
+    openStreetMap: c.maps?.openStreetMap,
+  }));
+};
 
 const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
   const handleSubmit = async () => {};
-  const handleChange = (key: keyof TripFormData, value: string | number) => {
 
-  }
-  const countries = loaderData as Country[];
+  const handleChange = (key: keyof TripFormData, value: string | number) => {};
 
-  const countryData = countries.map((country) => ({
-    text: country.name,
-    value: country.value,
+  const countries = loaderData as { name: string; value: string }[];
 
-  }))
+  const countryData = countries.map((c) => ({
+    text: c.name,
+    value: c.value,
+  }));
 
   return (
     <main className="flex flex-col gap-10 pb-20 wrapper">
@@ -37,18 +44,44 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
         <form className="trip-form" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="country">Country</label>
-            <ComboBoxComponent 
-            id="country" 
-            dataSource={countryData} 
-            fields={{ text: 'text', value: 'value' }}
-            placeholder="Select a Country"
-            className="combo-box"
-            change={(e: { value: string | undefined }) => {
-              if(e.value){
-                handleChange('country', e.value)
-              }
-            }}
+            <ComboBoxComponent
+              id="country"
+              dataSource={countryData}
+              fields={{ text: "text", value: "value" }}
+              placeholder="Select a Country"
+              className="combo-box"
+              change={(e: { value: string | undefined }) => {
+                if (e.value) {
+                  handleChange("country", e.value);
+                }
+              }}
+              allowFiltering
+              filtering={(e) => {
+                const query = e.text.toLowerCase();
+
+                e.updateData(
+                  countries
+                    .filter((country) =>
+                      country.name.toLowerCase().includes(query)
+                    )
+                    .map((country) => ({
+                      text: country.name,
+                      value: country.value,
+                    }))
+                );
+              }}
             />
+          </div>
+          <div>
+              <label htmlFor="duration">Duration</label>
+              <input
+                id="duration"
+                name="duration"
+                type="number"
+                placeholder="Enter a number of days (5, 12 ...)"
+                className="form-input placeholder:text-gray-100"
+                onChange={(e) => handleChange('duration', Number(e.target.value))}
+              />
           </div>
         </form>
       </section>
