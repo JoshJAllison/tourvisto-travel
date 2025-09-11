@@ -1,3 +1,4 @@
+import { ComboBox, ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import { Header } from "../../../components";
 
 const CreateTrip = () => {
@@ -9,7 +10,15 @@ const CreateTrip = () => {
 
       <section className="mt-2.5 wrapper-md">
         <form className="trip-form" onSubmit={handleSubmit}>
-
+          <div>
+            <label htmlFor="country">
+              Country
+            </label>
+              <ComboBoxComponent 
+                  id="country"
+                  dataSource={['title', 'title1']}
+                />
+          </div>
         </form>
       </section>
     </main>
