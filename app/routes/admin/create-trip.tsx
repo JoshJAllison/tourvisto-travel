@@ -1,8 +1,17 @@
 import { ComboBox, ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import { Header } from "../../../components";
+import type { Route } from './+types/create-trip'
 
-const CreateTrip = () => {
+export const loader = async () => {
+  const response = await fetch('https://restcountries.com/v3.1/all');
+  const data = await response.json();
+  return data;
+}
+
+const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
   const handleSubmit = async () => {};
+  const countries = loaderData as Country[];
+  console.log(data);
 
   return (
     <main className="flex flex-col gap-10 pb-20 wrapper">
