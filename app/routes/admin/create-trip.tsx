@@ -11,7 +11,7 @@ export const loader = async () => {
 const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
   const handleSubmit = async () => {};
   const countries = loaderData as Country[];
-  console.log(data);
+  console.log(countries);
 
   return (
     <main className="flex flex-col gap-10 pb-20 wrapper">
