@@ -1,7 +1,7 @@
 import { ComboBox, ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import { Header } from "../../../components";
 import type { Route } from "./+types/create-trip";
-import { selectItems } from "~/constants";
+import { selectItems, comboBoxItems } from "~/constants";
 import { formatKey } from "~/lib/utils";
 
 export const loader = async () => {
@@ -91,6 +91,13 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
               <label htmlFor={key}>
                 {formatKey(key)}
               </label>
+              <ComboBoxComponent 
+                id={key}
+                dataSource={comboBoxItems[key].map((item) => ({
+                  text: item,
+                  value: item,
+                }))}
+              />
             </div>
           ))}
         </form>
