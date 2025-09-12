@@ -97,6 +97,8 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
                   text: item,
                   value: item,
                 }))}
+                fields={{text: 'text', value: 'value'}}
+                placeholder={`Select ${formatKey(key)}`}
               />
             </div>
           ))}
