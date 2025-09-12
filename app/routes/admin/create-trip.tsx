@@ -91,14 +91,33 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
               <label htmlFor={key}>
                 {formatKey(key)}
               </label>
-              <ComboBoxComponent 
+
+              <ComboBoxComponent
                 id={key}
                 dataSource={comboBoxItems[key].map((item) => ({
                   text: item,
                   value: item,
                 }))}
-                fields={{text: 'text', value: 'value'}}
+                fields={{ text: "text", value: "value" }}
                 placeholder={`Select ${formatKey(key)}`}
+                change={(e: { value: string | undefined }) => {
+                  if (e.value) {
+                    handleChange(key, e.value);
+                  }
+                }}
+                allowFiltering
+                filtering={(e) => {
+                  const query = e.text.toLowerCase();
+
+                  e.updateData(
+                    comboBoxItems[key]
+                      .filter((item) => item.toLowerCase().includes(query))
+                      .map((item) => ({
+                        text: item,
+                        value: item,
+                      }))
+                  );
+                }}
               />
             </div>
           ))}
