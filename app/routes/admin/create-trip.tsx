@@ -1,6 +1,8 @@
 import { ComboBox, ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import { Header } from "../../../components";
 import type { Route } from "./+types/create-trip";
+import { selectItems } from "~/constants";
+import { formatKey } from "~/lib/utils";
 
 export const loader = async () => {
   const res = await fetch(
@@ -78,11 +80,19 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
                 id="duration"
                 name="duration"
                 type="number"
-                placeholder="Enter a number of days (5, 12 ...)"
+                placeholder="Enter a number of days"
                 className="form-input placeholder:text-gray-100"
                 onChange={(e) => handleChange('duration', Number(e.target.value))}
               />
           </div>
+
+          {selectItems.map((key) => (
+            <div key={key}>
+              <label htmlFor={key}>
+                {formatKey(key)}
+              </label>
+            </div>
+          ))}
         </form>
       </section>
     </main>
