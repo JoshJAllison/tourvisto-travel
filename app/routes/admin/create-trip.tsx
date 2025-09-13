@@ -3,7 +3,24 @@ import { Header } from "../../../components";
 import type { Route } from "./+types/create-trip";
 import { selectItems, comboBoxItems } from "~/constants";
 import { formatKey } from "~/lib/utils";
-import { LayersDirective, MapsComponent, LayerDirective } from "@syncfusion/ej2-react-maps";
+import { LayersDirective, MapsComponent, LayerDirective, Coordinate } from "@syncfusion/ej2-react-maps";
+import { useState } from "react";
+
+type Country = {
+  name: string;
+  value: string;
+  coordinates: number[];
+  openStreetMap: string;
+};
+
+type TripFormData = {
+  country: string;
+  travelStyle: string;
+  interest: string;
+  duration: number;
+  groupType: string;
+  budget: string; // Add this missing property
+};
 
 export const loader = async () => {
   const res = await fetch(
@@ -25,16 +42,32 @@ export const loader = async () => {
 };
 
 const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
+  const countries = loaderData as Country[];
+  const [formData, setFormData] = useState<TripFormData>({
+    country: countries[0]?.value || '', // Use .value instead of .name
+    travelStyle: '',
+    interest: '',
+    duration: 0,
+    groupType: '',
+    budget: '' // Initialize the new property
+  });
+
   const handleSubmit = async () => {};
 
   const handleChange = (key: keyof TripFormData, value: string | number) => {};
 
-  const countries = loaderData as { name: string; value: string }[];
-
-  const countryData = countries.map((c) => ({
-    text: c.name,
-    value: c.value,
+  const countryData = countries.map((country) => ({
+    text: country.name,
+    value: country.value,
   }));
+
+  const mapData = [
+    {
+      country: formData.country,
+      color: '#EA382E',
+      Coordinates: countries.find((c: Country) => c.name === formData.country)?.coordinates || []
+    }
+  ]
 
   return (
     <main className="flex flex-col gap-10 pb-20 wrapper">
