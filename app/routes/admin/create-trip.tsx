@@ -55,7 +55,9 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
 
   const handleSubmit = async () => {};
 
-  const handleChange = (key: keyof TripFormData, value: string | number) => {};
+  const handleChange = (key: keyof TripFormData, value: string | number) => {
+    setFormData({ ... formData, [key]: value})
+  };
 
   const countryData = countries.map((country) => ({
     text: country.name,
@@ -167,6 +169,9 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
                 <LayerDirective
                   shapeData={world_map}
                   dataSource={mapData}
+                  shapePropertyPath="name"
+                  shapeDataPath="country"
+                  shapeSettings={{ colorValuePath: 'color', fill: '#e5e5e5'}}
                 />
               </LayersDirective>
             </MapsComponent>
