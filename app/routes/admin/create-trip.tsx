@@ -2,7 +2,7 @@ import { ComboBox, ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import { Header } from "../../../components";
 import type { Route } from "./+types/create-trip";
 import { selectItems, comboBoxItems } from "~/constants";
-import { formatKey } from "~/lib/utils";
+import { formatKey, cn } from "~/lib/utils";
 import { LayersDirective, MapsComponent, LayerDirective, Coordinate } from "@syncfusion/ej2-react-maps";
 import { useState } from "react";
 import { world_map } from "~/constants/world_map";
@@ -57,7 +57,20 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true);
+
+    if(
+      !formData.country ||
+      !formData.travelStyle ||
+      !formData.interest ||
+      !formData.budget ||
+      !formData.groupType
+    ) {
+      setError('Please provide values for all fields')
+    }
+  };
 
   const handleChange = (key: keyof TripFormData, value: string | number) => {
     setFormData({ ... formData, [key]: value})
@@ -191,7 +204,7 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
 
           <footer className="px-6 w-full">
             <ButtonComponent type="submit" className="button-class !h-12 !w-full disabled={loading}">
-              <img src={`/assets/icons/${loading ? 'loader.svg' : 'magic-star.svg'}`} />
+              <img src={`/assets/icons/${loading ? 'loader.svg' : 'magic-star.svg'}`} className={cn("size-5", {'animate-spin' : loading})}  />
               <span className="p-16-semibold text-white">
                 {loading ? 'Generating...' : 'Generate Trip'}
               </span>
