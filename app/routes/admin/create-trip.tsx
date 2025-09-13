@@ -6,6 +6,7 @@ import { formatKey } from "~/lib/utils";
 import { LayersDirective, MapsComponent, LayerDirective, Coordinate } from "@syncfusion/ej2-react-maps";
 import { useState } from "react";
 import { world_map } from "~/constants/world_map";
+import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 
 type Country = {
   name: string;
@@ -52,6 +53,9 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
     groupType: '',
     budget: '' // Initialize the new property
   });
+
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {};
 
@@ -176,6 +180,21 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
               </LayersDirective>
             </MapsComponent>
           </div>
+
+          <div className="bg-gray-200 h-px w-full"/>
+
+          {error && (
+            <div className="error">
+              <p>{error}</p>
+            </div>
+          )}
+
+          <footer className="px-6 w-full">
+            <ButtonComponent type="submit" className="button-class !h-12 !w-full disabled={loading}">
+              <img src={`/assets/icons/${loading ? 'loader.svg' : 'magic-star.svg'}`} />
+            </ButtonComponent>
+          </footer>
+
         </form>
       </section>
     </main>
