@@ -192,6 +192,9 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
           <footer className="px-6 w-full">
             <ButtonComponent type="submit" className="button-class !h-12 !w-full disabled={loading}">
               <img src={`/assets/icons/${loading ? 'loader.svg' : 'magic-star.svg'}`} />
+              <span className="p-16-semibold text-white">
+                {loading ? 'Generating...' : 'Generate Trip'}
+              </span>
             </ButtonComponent>
           </footer>
 
