@@ -3,6 +3,7 @@ import { Header } from "../../../components";
 import type { Route } from "./+types/create-trip";
 import { selectItems, comboBoxItems } from "~/constants";
 import { formatKey } from "~/lib/utils";
+import { LayersDirective, MapsComponent, LayerDirective } from "@syncfusion/ej2-react-maps";
 
 export const loader = async () => {
   const res = await fetch(
@@ -118,9 +119,23 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
                       }))
                   );
                 }}
+                className="combo-box"
               />
             </div>
           ))}
+
+          <div>
+            <label htmlFor="location">
+              Location on the world map
+            </label>
+            <MapsComponent>
+              <LayersDirective>
+                <LayerDirective
+                
+                />
+              </LayersDirective>
+            </MapsComponent>
+          </div>
         </form>
       </section>
     </main>
