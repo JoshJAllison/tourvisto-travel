@@ -68,7 +68,9 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
       !formData.budget ||
       !formData.groupType
     ) {
-      setError('Please provide values for all fields')
+      setError('Please provide values for all fields');
+      setLoading(false)
+      return;
     }
   };
 
