@@ -5,6 +5,7 @@ import { selectItems, comboBoxItems } from "~/constants";
 import { formatKey } from "~/lib/utils";
 import { LayersDirective, MapsComponent, LayerDirective, Coordinate } from "@syncfusion/ej2-react-maps";
 import { useState } from "react";
+import { world_map } from "~/constants/world_map";
 
 type Country = {
   name: string;
@@ -164,7 +165,8 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
             <MapsComponent>
               <LayersDirective>
                 <LayerDirective
-                
+                  shapeData={world_map}
+                  dataSource={mapData}
                 />
               </LayersDirective>
             </MapsComponent>
