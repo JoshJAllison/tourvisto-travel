@@ -12,7 +12,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         interests,
         budget,
         groupType,
-        usedId,
+        userId,
     } = await request.json();
     
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
@@ -85,7 +85,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
             appwriteConfig.tripCollectionId,
             ID.unique(),
             {
-                tripDetail: JSON.stringify(trip)
+                tripDetail: JSON.stringify(trip),
+                $createdAt: new Date().toISOString(),
+                imageUrls,
+                userId,
             }
         )
         
