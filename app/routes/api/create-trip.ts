@@ -1,5 +1,4 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { C } from "node_modules/react-router/dist/development/index-react-server-client-11fLy3qB.mjs";
 import type { ActionFunctionArgs } from "react-router";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -63,7 +62,14 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         ...
         ]
         }`;
+        
+        // TODO: Add the actual AI call and response handling here
+        
     } catch (e) {
         console.error('Error generating travel plan: ', e);
+        return new Response(JSON.stringify({ error: "Failed to generate travel plan" }), {
+            status: 500,
+            headers: { "Content-Type": "application/json" }
+        });
     }
 }
