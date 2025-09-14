@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import type { ActionFunctionArgs } from "react-router";
+import { parseMarkdownToJson } from "~/lib/utils";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
     const {
@@ -64,6 +65,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         }`;
         
         // TODO: Add the actual AI call and response handling here
+        const textResult = await genAI
+            .getGenerativeModel({ model: 'gemini-2.0-flash'})
+            .generateContent([prompt])
+
+        const trip = parseMarkdownToJson(textResult.response.text());
         
     } catch (e) {
         console.error('Error generating travel plan: ', e);
