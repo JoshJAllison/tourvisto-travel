@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { ID } from "appwrite";
-import type { ActionFunctionArgs } from "react-router";
+import { data, type ActionFunctionArgs } from "react-router";
 import { appwriteConfig, database } from "~/appwrite/client";
 import { parseMarkdownToJson } from "~/lib/utils";
 
@@ -91,6 +91,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
                 userId,
             }
         )
+        return data({ id: result.$id })
         
     } catch (e) {
         console.error('Error generating travel plan: ', e);
