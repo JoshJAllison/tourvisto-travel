@@ -69,7 +69,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         // TODO: Add the actual AI call and response handling here
         const textResult = await genAI
             .getGenerativeModel({ model: 'gemini-2.0-flash'})
-            .generateContent([prompt])
+            .generateContent([prompt]);
 
         const trip = parseMarkdownToJson(textResult.response.text());
 
@@ -77,7 +77,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
             `https://api.unsplash.com/search/photos?query=${country} ${interests} ${travelStyle}&client_id=${unsplashApiKey}`
         );
 
-        const imageUrls = (await imageResponse.json()).results.slice(0, 3)
+        const imageUrl = (await imageResponse.json()).results.slice(0, 3)
             .map((result: any) => result.urls?.regular || null);
 
         const result = await database.createDocument(
@@ -86,12 +86,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
             ID.unique(),
             {
                 tripDetail: JSON.stringify(trip),
-                $createdAt: new Date().toISOString(),
-                imageUrls,
+                createdAt: new Date().toISOString(),
+                imageUrl,
                 userId,
             }
-        )
-        return data({ id: result.$id })
+        );
+        
+        return data({ id: result.$id });
         
     } catch (e) {
         console.error('Error generating travel plan: ', e);
