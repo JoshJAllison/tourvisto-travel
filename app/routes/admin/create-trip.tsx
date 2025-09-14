@@ -1,7 +1,7 @@
 import { ComboBox, ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import { Header } from "../../../components";
 import type { Route } from "./+types/create-trip";
-import { selectItems, comboBoxItems } from "~/constants";
+import { selectItems, comboBoxItems, travelStyles } from "~/constants";
 import { formatKey, cn } from "~/lib/utils";
 import { LayersDirective, MapsComponent, LayerDirective, Coordinate } from "@syncfusion/ej2-react-maps";
 import { useState } from "react";
@@ -9,6 +9,7 @@ import { world_map } from "~/constants/world_map";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 import { Account } from "appwrite";
 import { account } from "~/appwrite/client";
+import { useNavigate } from "react-router";
 
 type Country = {
   name: string;
@@ -47,6 +48,8 @@ export const loader = async () => {
 
 const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
   const countries = loaderData as Country[];
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState<TripFormData>({
     country: countries[0]?.value || '', // Use .value instead of .name
     travelStyle: '',
@@ -87,10 +90,27 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
       return;
     }
     try{
-      console.log('user', user);
-      console.log('formData', formData);
+      const response = await fetch('/api/create-trip', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          country: formData.country,
+          numberOfDays: formData.duration,
+          travelStyle: formData.travelStyle,
+          interests: formData.interest,
+          budget: formData.budget,
+          groupType: formData.groupType,
+          userId: user.$id
+        })
+      })
+
+      const result: CreateTripResponse = await response.json();
+
+      if(result?.id) navigate(`/trips/${result.id}`)
+        else console.error('Failed to generate a trip')
+      
     } catch (e){
-      console.error('Error generating trips', e);
+      console.error('Error generating trip', e);
     } finally{
         setLoading(false)
     }
